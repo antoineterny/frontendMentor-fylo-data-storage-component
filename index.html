@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+
+    <title>Frontend Mentor | Fylo data storage component</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Fylo</h1>
+        <div class="icons">
+          <a href="#">
+            <img src="./images/icon-document.svg" alt="" />
+          </a>
+          <a href="#">
+            <img src="./images/icon-folder.svg" alt="" />
+          </a>
+          <a href="#">
+            <img src="./images/icon-upload.svg" alt="" />
+          </a>
+        </div>
+      </header>
+
+      <main>
+        <h2>You’ve used <strong id="gigasUsed">0 GB</strong> of your storage</h2>
+        <div id="gauge">
+          <div id="level">
+            <div id="dot"></div>
+          </div>
+        </div>
+        <div class="scale"><span>0 GB</span><span>1000 GB</span></div>
+        <!-- <div class="scale"><span>|</span><span>|</span><span>|</span></div> -->
+        <div class="gb-left"><span id="gigasLeft">0</span>GB Left</div>
+      </main>
+    </div>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="#">Your Name Here</a>.
+    </div>
+
+    <script>
+      const gb = 815
+      const levelMax = gauge.offsetWidth - 4
+      const levelMin = 14
+      const pourcent = (levelMax - levelMin) / 100
+
+      let animatedGB = 0
+      let id = setInterval(animate, 10)
+      function animate() {
+        if (animatedGB >= gb) {
+          clearInterval(id)
+        } else {
+          animatedGB += 5
+          gigasUsed.innerText = `${animatedGB} GB`
+          gigasLeft.innerText = `${1000 - animatedGB}`
+          level.style.width = levelMin + (animatedGB / 10 * pourcent) + "px"
+        }
+      }
+
+      // gigasUsed.innerText = `${gb} GB`
+      // gigasLeft.innerText = 1000 - gb
+      // level.style.width = levelMin + (gb / 10 * pourcent) + "px"
+      
+    </script>
+
+  </body>
+</html>
